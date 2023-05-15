@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 class RegisterNewUserViewModel(private val userRepository: UserRepository): ViewModel() {
 
     var name by mutableStateOf("")
-
     var email by mutableStateOf("")
     var password by mutableStateOf("")
 
@@ -25,14 +24,11 @@ class RegisterNewUserViewModel(private val userRepository: UserRepository): View
     private val _toastMessage = MutableSharedFlow<String>()
     val toastMessage = _toastMessage.asSharedFlow()
 
-
     private fun validateFields() {
         isNameValid = name.isNotEmpty()
         if (!isNameValid) {
             throw Exception("Name is required")
         }
-
-
     }
 
     fun registrar(onSuccess: () -> Unit) {

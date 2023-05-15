@@ -24,8 +24,6 @@ import com.example.aularoomdatabase2023.entity.User
 import com.example.aularoomdatabase2023.viewModel.ListUserViewModel
 import com.example.aularoomdatabase2023.viewModel.ListUserViewModelFactory
 
-
-
 @Composable
 fun ListScreen() {
     val application = LocalContext.current.applicationContext as Application
@@ -34,7 +32,6 @@ fun ListScreen() {
     )
 
     viewModel.loadAllUsers()
-
 
     var openDialogRemove by remember { mutableStateOf(false) }
     ConfirmDelete(openDialog = openDialogRemove,

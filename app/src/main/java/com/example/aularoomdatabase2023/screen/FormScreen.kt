@@ -38,9 +38,10 @@ fun FormScreen(onAfterSave: () -> Unit, onBack:() -> Unit) {
 
     Scaffold(scaffoldState = scaffoldState ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(paddingValues = it),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
+
         ) {
             OutlinedTextField(
                 value = viewModel.name,
@@ -71,14 +72,14 @@ fun FormScreen(onAfterSave: () -> Unit, onBack:() -> Unit) {
                         onAfterSave()
                     })
                 }) {
-                    Text(text = "Salvar")
+                    Text(text = "Save")
                 }
                 Spacer(modifier = Modifier.size(8.dp))
                 Button(
                     onClick = {
                         onBack()
                     }) {
-                    Text(text = "Voltar")
+                    Text(text = "Back")
                 }
 
 

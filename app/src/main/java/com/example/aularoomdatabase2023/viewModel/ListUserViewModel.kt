@@ -34,8 +34,6 @@ class ListUserViewModel(private val userRepository: UserRepository): ViewModel()
                 userRepository.delete(it)
                 loadAllUsers()
             }
-
-
         }
     }
 
