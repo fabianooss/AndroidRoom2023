@@ -1,6 +1,7 @@
 package com.example.aularoomdatabase2023.screen
 
 import android.app.Application
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -21,17 +22,20 @@ fun FormScreen(onAfterSave: () -> Unit, onBack:() -> Unit) {
     val viewModel: RegisterNewUserViewModel = viewModel(
         factory = RegisterNewUserViewModelFactory(application)
     )
-
+    val ctx = LocalContext.current
+    //feedback para o usuário
     val scaffoldState = rememberScaffoldState()
-
     LaunchedEffect(Unit) {
         viewModel.toastMessage.collectLatest {
             scaffoldState.snackbarHostState.showSnackbar(
                 message = it,
                 duration = SnackbarDuration.Long
             )
+            // opção para mostrar as mensagens
+            // Toast.makeText(ctx, it, Toast.LENGTH_SHORT).show()
         }
     }
+
 
     val focusManager = LocalFocusManager.current
 
@@ -67,6 +71,7 @@ fun FormScreen(onAfterSave: () -> Unit, onBack:() -> Unit) {
             )
             Row() {
                 Button(onClick = {
+
                     focusManager.clearFocus()
                     viewModel.registrar(onSuccess = {
                         onAfterSave()
