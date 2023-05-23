@@ -74,9 +74,19 @@ fun MyApp() {
                     ListScreen()
                 }
                 composable("login") {
-                    LoginScreen(onBack = {
-                        navController.navigateUp()
-                    })
+                    LoginScreen(
+                        onBack = {
+                            navController.navigateUp()
+                        },
+                        onAfterLogin = {
+                            navController.navigate("list")
+                            coroutineScope.launch {
+                                scaffoldState.snackbarHostState.showSnackbar(
+                                    message = "Login ok"
+                                )
+                            }
+                        }
+                    )
                 }
                 composable("form") {
                     FormScreen(onAfterSave = {

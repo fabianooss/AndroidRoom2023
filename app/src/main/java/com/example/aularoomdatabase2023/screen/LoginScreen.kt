@@ -20,7 +20,7 @@ import com.example.aularoomdatabase2023.viewModel.RegisterNewUserViewModelFactor
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-fun LoginScreen(onBack:() -> Unit) {
+fun LoginScreen(onAfterLogin:()->Unit, onBack:() -> Unit) {
     val application = LocalContext.current.applicationContext as Application
     val viewModel: LoginViewModel = viewModel(
         factory = LoginViewModelFactory(application)
@@ -67,10 +67,11 @@ fun LoginScreen(onBack:() -> Unit) {
             )
             Row() {
                 Button(onClick = {
-
                     focusManager.clearFocus()
                     viewModel.validateLogin(onResult = {
-                            Log.i("Login", "Result ${it}")
+                        if (it) {
+                            onAfterLogin()
+                        }
                     })
                 }) {
                     Text(text = "Login")
