@@ -23,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.aularoomdatabase2023.screen.FormScreen
 import com.example.aularoomdatabase2023.screen.ListScreen
+import com.example.aularoomdatabase2023.screen.LoginScreen
 import com.example.aularoomdatabase2023.ui.theme.AulaRoomDatabaseTheme
 import com.example.aularoomdatabase2023.viewModel.RegisterNewUserViewModel
 import com.example.aularoomdatabase2023.viewModel.RegisterNewUserViewModelFactory
@@ -59,6 +60,9 @@ fun MyApp() {
                 Button(onClick = { navController.navigate("form") }) {
                     Text(text = "Add")
                 }
+                Button(onClick = { navController.navigate("login") }) {
+                    Text(text = "Login")
+                }
             }
         }
     ) {
@@ -68,6 +72,11 @@ fun MyApp() {
                 startDestination = "list" ) {
                 composable("list") {
                     ListScreen()
+                }
+                composable("login") {
+                    LoginScreen(onBack = {
+                        navController.navigateUp()
+                    })
                 }
                 composable("form") {
                     FormScreen(onAfterSave = {
